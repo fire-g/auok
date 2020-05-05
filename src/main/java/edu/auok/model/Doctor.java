@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Data
-public class Doctor {
+public class Doctor  implements Serializable {
 	@Id
 	private int id;
 	
