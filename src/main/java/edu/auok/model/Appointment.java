@@ -8,9 +8,9 @@ public class Appointment {
 	@Id
 	private int id;
 	
-	private Doctor doctor;
+	//private Doctor doctor;
 	
-	private User user;
+	//private User user;
 	
 	private boolean isCompleted;
 	
