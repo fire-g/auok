@@ -1,10 +1,20 @@
 package edu.auok.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
+/**
+ *
+ * 修改0.1:
+ * @author HaoTian
+ * 添加lombok注解，优化代码结构
+ */
 @Entity
-public class User {
+@Data
+public class User implements Serializable {
 	@Id
 	private int id;
 	
@@ -26,46 +36,6 @@ public class User {
 		this.account = account;
 		this.password = password;
 		this.name = name;
-		this.sex = sex;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
 		this.sex = sex;
 	}
 }
