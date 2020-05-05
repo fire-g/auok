@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import edu.auok.model.Department;
 
-public interface DepartmentRepo extends CrudRepository<Department, Integer>{
+public interface DepartmentRepo extends CrudRepository<Department, Integer> { 
 
 }

@@ -1,5 +1,9 @@
 package edu.auok.repository;
 
-public class AppointmentRepo {
+import org.springframework.data.repository.CrudRepository;
+
+import edu.auok.model.Appointment;
+
+public interface AppointmentRepo extends CrudRepository<Appointment, Integer>{
 
 }

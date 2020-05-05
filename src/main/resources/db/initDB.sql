@@ -1,3 +1,9 @@
+DROP TABLE departments IF EXISTS;
+DROP TABLE schedules IF EXISTS;
+DROP TABLE doctors IF EXISTS;
+DROP TABLE users IF EXISTS;
+DROP TABLE appointments IF EXISTS;
+DROP TABLE comments IF EXISTS;
 
 CREATE TABLE departments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -22,9 +28,7 @@ CREATE TABLE schedules (
   sat_pm TINYINT(1) NOT NULL,
   sun_am TINYINT(1) NOT NULL,
   sun_pm TINYINT(1) NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE INDEX sat_pm_UNIQUE (sat_pm ASC),
-  UNIQUE INDEX thu_pm_UNIQUE (thu_pm ASC)
+  PRIMARY KEY (id)
  );
 
 CREATE TABLE doctors (
@@ -32,8 +36,8 @@ CREATE TABLE doctors (
   account VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
   name VARCHAR(45) NOT NULL,
-  introduction VARCHAR(45) NOT NULL,
   sex VARCHAR(4) NOT NULL,
+  introduction VARCHAR(45) NOT NULL,
   department_id INT UNSIGNED NOT NULL,
   schedule_id INT UNSIGNED NOT NULL,
   max_patient INT NOT NULL,
@@ -63,6 +67,7 @@ CREATE TABLE appointments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   doctor_id INT UNSIGNED NOT NULL,
   user_id INT UNSIGNED NOT NULL,
+  dest_date Date NOT NULL,
   date DATE NOT NULL,
   is_completed TINYINT(1) NULL,
   PRIMARY KEY (id),
