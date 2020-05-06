@@ -15,7 +15,7 @@ public class Comment {
 	@Id
 	private int id;
 	
-	private String comment;
+	private String content;
 	
 	@OneToOne()
 	@JoinColumn(name="doctor_id", referencedColumnName="id")
