@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.auok.repository.AppointmentRepo;
 
 import edu.auok.model.Appointment;
+import edu.auok.model.User;
 
 @CrossOrigin
 @RestController

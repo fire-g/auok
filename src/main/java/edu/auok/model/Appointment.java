@@ -25,7 +25,7 @@ import java.util.Date;
 @Entity()
 @Data
 @Table(name="appointments")
-public class Appointment  implements Serializable {
+public class Appointment implements Serializable {
 	@Id
 	private int id;
 	
