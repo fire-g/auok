@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.auok.repository.AppointmentRepo;
-
+import edu.auok.service.AppointmentInfoService;
 import edu.auok.model.Appointment;
+import edu.auok.model.Department;
 import edu.auok.model.User;
 
 @CrossOrigin
@@ -17,11 +18,10 @@ import edu.auok.model.User;
 public class AppointmentInfoRestController {
 	
 	@Autowired
-	private AppointmentRepo repo;
+	private AppointmentInfoService service;
 	
 	@GetMapping("")
-	public Iterable<Appointment> home() {
-		System.out.println(repo.findAll());
-		return repo.findAll();
+	public int home() {
+		return service.getAppointmentInfo(new Department());
 	}
 }
