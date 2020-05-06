@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name="doctors")
-public class Doctor  implements Serializable {
+public class Doctor implements Serializable {
 	@Id
 	private int id;
 	
@@ -34,5 +34,4 @@ public class Doctor  implements Serializable {
 	private String sex;
 	
 	private String introduction;
-
 }
