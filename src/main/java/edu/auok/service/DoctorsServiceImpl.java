@@ -6,17 +6,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import edu.auok.model.Doctor;
-//import edu.auok.repository.DoctorsRepo;
+import edu.auok.repository.DoctorsRepo;
 
-//@Service
-//public class DoctorsServiceImpl implements DoctorsService{
-//
-//	@Autowired
-//	private DoctorsRepo doctorsRepo;
-//	
-//	@Override
-//	public Page<Doctor> findAllDoctors(String kw, Pageable pageable) {
-//		return doctorsRepo.findByKeyword(kw, pageable);
-//	}
-//
-//}
+@Service
+public class DoctorsServiceImpl implements DoctorsService{
+
+	@Autowired
+	private DoctorsRepo doctorsRepo;
+	
+	@Override
+	public Page<Doctor> findAllDoctors(String kw, Pageable pageable) {
+		return doctorsRepo.findByKeyword(kw, pageable);
+	}
+
+}

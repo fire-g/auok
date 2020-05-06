@@ -5,8 +5,8 @@ import org.springframework.data.domain.Pageable;
 
 import edu.auok.model.Doctor;
 
-//public interface DoctorsService {
-//	
-//	public Page<Doctor> findAllDoctors(String kw, Pageable pageable);
-//	
-//}
+public interface DoctorsService {
+	
+	public Page<Doctor> findAllDoctors(String kw, Pageable pageable);
+	
+}
