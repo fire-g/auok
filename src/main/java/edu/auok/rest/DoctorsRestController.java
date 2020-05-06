@@ -25,6 +25,8 @@ public class DoctorsRestController {
 		}
 		Page<Doctor> ppu = doctorsService.findAllDoctors(kw, pageable);
 		model.addAttribute("pages", ppu);
+		
+		System.out.println(kw);
 		return "listdoctors";
 	}
 	
