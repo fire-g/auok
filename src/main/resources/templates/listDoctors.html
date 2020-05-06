@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Doctors List</title>
@@ -27,7 +27,7 @@
 
 	<nav class="navbar navbar-default" role="navigation">
 		<div style="float: left">
-			<form class="bs-example bs-example-form" role="form">
+			<form class="bs-example bs-example-form" role="form" th:action="@{/listDoctors}" method="post">
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="input-group">
@@ -46,14 +46,13 @@
 
 							<div class="input-group" style="padding-left: 100px">
 								<input type="text" class="form-control"
-									placeholder="请输入您想搜索的医生姓名"> <span
+									placeholder="请输入您想搜索的医生姓名" name="kw"> <span
 									class="input-group-btn">
-									<button class="btn btn-default" type="button">开始搜索</button>
+									<input type="submit" class="btn btn-primary" value="开始搜索">
 								</span>
 							</div>
 						</div>
 					</div>
-					<br>
 				</div>
 			</form>
 		</div>
@@ -71,6 +70,11 @@
 				</tr>
 			</thead>
 			<tbody>
+			    <tr th:each="doctors:${pages.content}">
+			        <td th:text="${doctors.id}"></td>
+			        <td th:text="${doctors.name}"></td>
+			        <td th:text="${doctors.sex}"></td>
+			    </tr>
 				<tr>
 					<td>兰翌星</td>
 					<td>内科</td>

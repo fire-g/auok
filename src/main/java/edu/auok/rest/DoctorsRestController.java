@@ -18,6 +18,11 @@ public class DoctorsRestController {
 	
 	@RequestMapping("/listDoctors")
 	public String list(String kw, Model model, Pageable pageable) {
+		if(kw != null) {
+			kw = "%" + kw + "%";
+		}else {
+			kw = "%%";
+		}
 		Page<Doctor> ppu = doctorsService.findAllDoctors(kw, pageable);
 		model.addAttribute("pages", ppu);
 		return "listdoctors";
