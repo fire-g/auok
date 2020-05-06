@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Doctors List</title>
+
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">医院预约挂号系统</a>
+			</div>
+			<div style="float: right">
+				<ul class="nav navbar-nav">
+					<li><a href="#">姓名：楼畅</a></li>
+					<li><a href="#">编号：17201215</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<div style="float: left">
+			<form class="bs-example bs-example-form" role="form">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="input-group">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown" style="justify-content: center">
+									按科室选择搜索 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">内科</a></li>
+									<li><a href="#">外科</a></li>
+									<li><a href="#">口腔科</a></li>
+									<li><a href="#">骨科</a></li>
+								</ul>
+							</div>
+
+							<div class="input-group" style="padding-left: 100px">
+								<input type="text" class="form-control"
+									placeholder="请输入您想搜索的医生姓名"> <span
+									class="input-group-btn">
+									<button class="btn btn-default" type="button">开始搜索</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<br>
+				</div>
+			</form>
+		</div>
+	</nav>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<table id="doctors" class="table table-condensed">
+			<caption>预约挂号</caption>
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>科室</th>
+					<th>就诊时间</th>
+					<th>预约</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>兰翌星</td>
+					<td>内科</td>
+					<td>？？？</td>
+					<td><a href="#">确定预约</a></td>
+				</tr>
+				<tr>
+					<td>黎子罗</td>
+					<td>外科</td>
+					<td>？？？</td>
+					<td><a href="#">确定预约</a></td>
+				</tr>
+				<tr>
+					<td>罗雯</td>
+					<td>骨科</td>
+					<td>？？？</td>
+					<td><a href="#">确定预约</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</nav>
+	
+</body>
+</html>
