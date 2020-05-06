@@ -34,23 +34,5 @@ public class Doctor  implements Serializable {
 	private String sex;
 	
 	private String introduction;
-	
-//	private Schedule schedule;
-	
-//	private Department department;
-	
-	public Doctor() {
-		super();
-	}
-	
-	public Doctor(int id, String account, String password, String name, String sex, String introduction) {
-		super();
-		this.id = id;
-		this.account = account;
-		this.password = password;
-		this.name = name;
-		this.sex = sex;
-		this.introduction = introduction;
-//		this.department = department;
-	}
+
 }
