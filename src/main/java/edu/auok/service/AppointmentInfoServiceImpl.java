@@ -40,7 +40,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 		System.out.println(today);
 		System.out.println(min);
 		
-		return 0;
+		return list.size();
 	}
 
 	@Override

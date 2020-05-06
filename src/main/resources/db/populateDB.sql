@@ -17,6 +17,6 @@ INSERT INTO doctors (id,account,password,name,sex,introduction,department_id,sch
 INSERT INTO appointments (doctor_id, user_id, dest_date, date, is_completed) 
 	VALUES (1, 1, '2020-5-6', '2020-5-4', 0);
 INSERT INTO appointments (doctor_id, user_id, dest_date, date, is_completed) 
-	VALUES (1, 2, '2020-4-7', '2020-4-1', 0);
+	VALUES (1, 2, '2020-5-5', '2020-4-1', 0);
 INSERT INTO appointments (doctor_id, user_id, dest_date, date, is_completed) 
-	VALUES (1, 2, '2020-6-7', '2020-6-1', 0);
+	VALUES (1, 2, '2020-4-20', '2020-4-1', 0);
