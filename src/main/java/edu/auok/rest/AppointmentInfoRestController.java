@@ -20,7 +20,6 @@ public class AppointmentInfoRestController {
 	
 	@GetMapping("")
 	public Iterable<Appointment> home() {
-		System.out.println(repo.findAll());
 		return repo.findAll();
 	}
 }
