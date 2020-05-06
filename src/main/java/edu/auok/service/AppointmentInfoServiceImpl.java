@@ -10,13 +10,15 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import edu.auok.model.Appointment;
 import edu.auok.model.Department;
 import edu.auok.model.Doctor;
 import edu.auok.repository.AppointmentRepo;
 
-public class AppointmentInfoServiceImp implements AppointmentInfoService {
+@Service
+public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 	
 	@Autowired
 	AppointmentRepo repo;
@@ -24,19 +26,8 @@ public class AppointmentInfoServiceImp implements AppointmentInfoService {
 	@Override
 	public int getAppointmentInfo(Department department) {
 		Date today = new Date();
-		
-		List<Appointment> list = repo.findAll(new Specification<Appointment>() {
-			@Override
-			public Predicate toPredicate(Root<Appointment> root, CriteriaQuery<?> query,
-					CriteriaBuilder criteriaBuilder) {
-				
-				Predicate p1 = criteriaBuilder.lessThanOrEqualTo(root.get("dest_date"), today);
-				
-				
-				return p1;
-			}
-			
-		});
+		Date min = new Date(today.getTime() - 108000000);
+		List<Appointment> list = repo.findAppointmentBetweenDate(min, today);
 		
 		
 		return 0;
