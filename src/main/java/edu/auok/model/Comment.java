@@ -8,6 +8,9 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * @author HaoTian
+ */
 @Entity
 @Data
 @Table(name="comments")
