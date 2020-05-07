@@ -48,9 +48,9 @@
 
 								<div class="input-group" style="padding-left: 100px">
 									<input type="text" class="form-control"
-										placeholder="请输入您想搜索的医生姓名" name="kw" v-model="name"> <span
+										placeholder="请输入您想搜索的医生姓名" v-model="name"> <span
 										class="input-group-btn"> 
-										<button class="btn btn-default" v-on:click="findDoctors">开始搜索</button>
+										<button class="btn btn-default" v-on:click.prevent="findDoctors">开始搜索</button>
 									</span>
 								</div>
 							</div>
@@ -77,24 +77,6 @@
 						<td v-text="doctor.name"></td>
 						<td v-text="doctor.sex"></td>
 					</tr>
-					<tr>
-						<td>兰翌星</td>
-						<td>内科</td>
-						<td>？？？</td>
-						<td><a href="#">确定预约</a></td>
-					</tr>
-					<tr>
-						<td>黎子罗</td>
-						<td>外科</td>
-						<td>？？？</td>
-						<td><a href="#">确定预约</a></td>
-					</tr>
-					<tr>
-						<td>罗雯</td>
-						<td>骨科</td>
-						<td>？？？</td>
-						<td><a href="#">确定预约</a></td>
-					</tr>
 				</tbody>
 			</table>
 		</nav>
@@ -103,29 +85,29 @@
 	<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
 
 	<script>
-          var vue = new Vue({
-              el:"#app",
-              data:{
-                  name:"",
-                  doctors:[]
-              },
-              methods:{
-                  findDoctors:function(){
-                      axios.get("http://localhost:8080/listDoctors",{
-                          params:{
-                        	  name:this.name
-                          }
-                      })
-                      .then(res =>{
-                    	  console.log(res.data);
-                          this.doctors = res.data;
-                      })
-                      .catch(err =>{
-                        console.error(err);
-                      })
-                  }
-              }
-          });
+	var vue = new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            doctors:[]
+        },
+        methods:{
+            findDoctors:function(){
+                axios.get("https://localhost:8080/api/v1/listDoctors",{
+                    params:{
+                        name:this.name
+                    }
+                })
+                .then(res =>{
+                    //console.log(res.data)
+                    this.doctors = res.data;
+                })
+                .catch(err =>{
+                  console.error(err);
+                })
+            }
+        }
+    });
       </script>
 </body>
 </html>

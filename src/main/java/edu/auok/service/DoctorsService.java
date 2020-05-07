@@ -1,13 +1,13 @@
 package edu.auok.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.Collection;
 
 import edu.auok.model.Doctor;
 
 public interface DoctorsService {
 	
-	public Page<Doctor> findAllDoctors(String kw, Pageable pageable);
+	public Collection<Doctor> getAllDoctors();
+	public Collection<Doctor> findByName(String name);
 	
 	public void setMaxpatient(int id,int maxpatient);
 }

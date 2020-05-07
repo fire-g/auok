@@ -1,5 +1,7 @@
 package edu.auok.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +17,13 @@ public class DoctorsServiceImpl implements DoctorsService{
 	private DoctorsRepo doctorsRepo;
 	
 	@Override
-	public Page<Doctor> findAllDoctors(String kw, Pageable pageable) {
-		return doctorsRepo.findByKeyword(kw, pageable);
+	public Collection<Doctor> getAllDoctors() {
+		return (Collection<Doctor>)doctorsRepo.findAll();
+	}
+	
+	@Override
+	public Collection<Doctor> findByName(String name) {
+		return (Collection<Doctor>)doctorsRepo.findByKeyword("%"+name+"%");
 	}
 	
 	@Override
