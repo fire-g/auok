@@ -118,6 +118,7 @@
                       })
                       .then(res =>{
                           this.doctors = res.data;
+                          System.out.println(res.data);
                       })
                       .catch(err =>{
                         console.error(err);
