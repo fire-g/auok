@@ -20,17 +20,27 @@ import edu.auok.repository.AppointmentRepo;
 @Service
 public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 	
+	private static final long year = 31536000000L;
+	
+	private static final long month = 2592000000L;
+	
+	private static final long week = 604800000L;
+	
+	private static final long day = 86400000L;
+	
 	@Autowired
 	AppointmentRepo repo;
 	
 	@Override
 	public int getAppointmentInfo(Department department) {
 		Date today = new Date();
-		Date min = new Date(today.getTime() - 108000000);
-		List<Appointment> list = repo.findAppointmentBetweenDate(min, today);
+		Date min = new Date(today.getTime() - month);
+		List<Appointment> list = repo.findAppointment(min, today);
 		
+		System.out.println(today);
+		System.out.println(min);
 		
-		return 0;
+		return list.size();
 	}
 
 	@Override
