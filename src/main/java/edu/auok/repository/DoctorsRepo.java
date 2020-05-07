@@ -12,7 +12,7 @@ import edu.auok.model.Doctor;
 @Repository
 public interface DoctorsRepo extends JpaRepository<Doctor,Integer>{
 	
-	@Query(value = "select * from doctors where name like :condition", nativeQuery = true)
-	public Page<Doctor> findByKeyword(@Param("condition")String kw, Pageable pageable);
+	@Query(value = "select * from doctors where name like ?1", nativeQuery = true)
+	public Page<Doctor> findByKeyword(String kw, Pageable pageable);
 	
 }

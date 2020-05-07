@@ -6,17 +6,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.auok.model.Doctor;
 import edu.auok.service.DoctorsService;
 
 @Controller
+@RequestMapping("/api/v1/listDoctors")
 public class DoctorsRestController {
 	
 	@Autowired
 	private DoctorsService doctorsService;
 	
-	@RequestMapping("/listDoctors")
+	@RequestMapping("/")
 	public String list(String kw, Model model, Pageable pageable) {
 		if(kw != null) {
 			kw = "%" + kw + "%";

@@ -29,7 +29,7 @@
 		<nav class="navbar navbar-default" role="navigation">
 			<div style="float: left">
 				<form class="bs-example bs-example-form" role="form"
-					action="/listDoctors" method="post">
+					action="/" method="post">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="input-group">
@@ -111,14 +111,13 @@
               },
               methods:{
                   findDoctors:function(){
-                      axios.get("http://localhost:8080/",{
+                      axios.get("http://localhost:8080/api/v1/listDoctors",{
                           params:{
                         	  name:this.name
                           }
                       })
                       .then(res =>{
                           this.doctors = res.data;
-                          System.out.println(res.data);
                       })
                       .catch(err =>{
                         console.error(err);

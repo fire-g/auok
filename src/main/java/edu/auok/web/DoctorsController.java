@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AppointmentController {
+public class DoctorsController {
 	
 	@RequestMapping("/listDoctors")
 	public String welcome() {
