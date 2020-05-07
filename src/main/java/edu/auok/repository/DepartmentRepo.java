@@ -1,9 +1,9 @@
 package edu.auok.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.auok.model.Department;
 
-public interface DepartmentRepo extends CrudRepository<Department, Integer> { 
+public interface DepartmentRepo extends JpaRepository<Department, Integer> { 
 
 }
