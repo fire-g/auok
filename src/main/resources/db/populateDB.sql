@@ -5,8 +5,21 @@ INSERT INTO users (id, account, password, name, sex) VALUES(2, 'lc', '123456', '
 INSERT INTO schedules (id,mon_am,mon_pm,tue_am,tue_pm,wed_am,wed_pm,thu_am,thu_pm,fri_am,fri_pm,sat_am,sat_pm,sun_am,sun_pm)
 	VALUES(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-INSERT INTO departments values(1, '内科');
-INSERT INTO departments values(2, '外科');
+INSERT INTO departments(name) values('内科');
+INSERT INTO departments(name) values('外科');
+INSERT INTO departments(name) values('儿科');
+INSERT INTO departments(name) values('妇科');
+INSERT INTO departments(name) values('眼科');
+INSERT INTO departments(name) values('耳鼻喉科');
+INSERT INTO departments(name) values('口腔科');
+INSERT INTO departments(name) values('中医科');
+INSERT INTO departments(name) values('针灸推拿科');
+INSERT INTO departments(name) values('呼吸内科');
+INSERT INTO departments(name) values('消化内科');
+INSERT INTO departments(name) values('泌尿内科');
+INSERT INTO departments(name) values('心内科');
+INSERT INTO departments(name) values('普外科');
+INSERT INTO departments(name) values('产科');
 
 INSERT INTO doctors (id,account,password,name,sex,introduction,department_id,schedule_id,max_patient) 
 	VALUES(1, 'jack001', '123456', 'jack', '男', '专治疑难杂症', 1, 1, 250);
