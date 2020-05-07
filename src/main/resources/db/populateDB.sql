@@ -20,3 +20,9 @@ INSERT INTO appointments (doctor_id, user_id, dest_date, date, is_completed)
 	VALUES (1, 2, '2020-5-5', '2020-4-1', 0);
 INSERT INTO appointments (doctor_id, user_id, dest_date, date, is_completed) 
 	VALUES (1, 2, '2020-4-20', '2020-4-1', 0);
+
+INSERT INTO `role` VALUES ('1', 'ROLE_ADMIN');
+INSERT INTO `role` VALUES ('2', 'ROLE_USER');
+
+INSERT INTO `user_role` VALUES ('1','1', '1');
+INSERT INTO `user_role` VALUES ('2','1', '2');

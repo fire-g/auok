@@ -1,9 +1,58 @@
-DROP TABLE departments IF EXISTS;
-DROP TABLE schedules IF EXISTS;
-DROP TABLE doctors IF EXISTS;
-DROP TABLE users IF EXISTS;
-DROP TABLE appointments IF EXISTS;
-DROP TABLE comments IF EXISTS;
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS schedules;
+DROP TABLE IF EXISTS doctors;
+DROP TABLE IF EXISTS users ;
+DROP TABLE  IF EXISTS appointments;
+DROP TABLE  IF EXISTS comments;
+drop table if exists permission_role;
+drop table if exists permission;
+drop table if exists user_role;
+drop table if exists role;
+
+/*==============================================================*/
+/* Table: permission                                            */
+/*==============================================================*/
+create table permission
+(
+    id                   int not null,
+    name                 varchar(0),
+    description          varchar(0),
+    url                  varchar(0),
+    pid                  int,
+    primary key (id)
+);
+
+/*==============================================================*/
+/* Table: permission_role                                       */
+/*==============================================================*/
+create table permission_role
+(
+    id                   int not null,
+    role_id              int,
+    permission_id        int,
+    primary key (id)
+);
+
+/*==============================================================*/
+/* Table: role                                                  */
+/*==============================================================*/
+create table role
+(
+    id                   int not null,
+    name                 varchar(25),
+    primary key (id)
+);
+
+/*==============================================================*/
+/* Table: role_user                                             */
+/*==============================================================*/
+create table user_role
+(
+    id                   int not null,
+    user_id              int,
+    role_id              int,
+    primary key (id)
+);
 
 CREATE TABLE departments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -100,4 +149,16 @@ CREATE TABLE comments (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
+
+alter table permission_role add constraint FK_Reference_3 foreign key (permission_id)
+    references permission (id) on delete restrict on update restrict;
+
+alter table permission_role add constraint FK_Reference_4 foreign key (role_id)
+    references role (id) on delete restrict on update restrict;
+
+alter table user_role add constraint FK_Reference_1 foreign key (user_id)
+    references users (id) on delete restrict on update restrict;
+
+alter table user_role add constraint FK_Reference_2 foreign key (role_id)
+    references role (id) on delete restrict on update restrict;
 
