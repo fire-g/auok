@@ -18,5 +18,10 @@ public class DoctorsServiceImpl implements DoctorsService{
 	public Page<Doctor> findAllDoctors(String kw, Pageable pageable) {
 		return doctorsRepo.findByKeyword(kw, pageable);
 	}
+	
+	@Override
+	public void setMaxpatient(int id, int maxpatient) {
+		return doctorsRep.setMaxpatient(id,maxpatient);
+	}
 
 }

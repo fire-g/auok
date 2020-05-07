@@ -15,4 +15,6 @@ public interface DoctorsRepo extends JpaRepository<Doctor,Integer>{
 	@Query(value = "select * from doctors where name like ?1", nativeQuery = true)
 	public Page<Doctor> findByKeyword(String kw, Pageable pageable);
 	
+	@Query("update doctor set maxpatient like ?1 where id like ?2", nativeQuery = true)
+	public void setMaxpatient(int id,int maxpatient);
 }

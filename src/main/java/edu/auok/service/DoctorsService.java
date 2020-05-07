@@ -9,4 +9,5 @@ public interface DoctorsService {
 	
 	public Page<Doctor> findAllDoctors(String kw, Pageable pageable);
 	
+	public void setMaxpatient(int id,int maxpatient);
 }
