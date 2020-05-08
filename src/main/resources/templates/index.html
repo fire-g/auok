@@ -9,6 +9,81 @@
 <script th:src="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <body>
 <div th:replace="common/nav"></div>
+<div style="width: 98%;margin: auto">
+    <div style="width: 66%;float: left">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div style="float: left">
+                    <form class="bs-example bs-example-form" role="form"
+                          action="/listDoctors" method="post">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown" style="justify-content: center">
+                                            按科室选择搜索 <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">内科</a></li>
+                                            <li><a href="#">外科</a></li>
+                                            <li><a href="#">口腔科</a></li>
+                                            <li><a href="#">骨科</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="input-group" style="padding-left: 100px">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入您想搜索的医生姓名" v-model="name"> <span
+                                            class="input-group-btn">
+										<button class="btn btn-default" v-on:click.prevent="findDoctors">开始搜索</button>
+									</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table id="doctors" class="table table-condensed">
+                    <caption>预约挂号</caption>
+                    <thead>
+                    <tr>
+                        <th>医生姓名</th>
+                        <th>科室</th>
+                        <th>就诊时间</th>
+                        <th>预约</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="doctor in doctors">
+                        <td v-text="doctor.id"></td>
+                        <td v-text="doctor.name"></td>
+                        <td v-text="doctor.sex"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="width: 32%;float: right">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h1>公告</h1>
+                <div>
+                    <p>
+                        医院预约挂号资费公告如下:
+                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script th:src="@{https://cdn.bootcss.com/vue/2.6.11/vue.min.js}"></script>
 <script th:src="@{https://cdn.bootcss.com/axios/0.19.2/axios.min.js}"></script>

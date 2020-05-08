@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table id="doctors" class="table table-condensed">
+            <caption>预约挂号</caption>
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科室</th>
+                <th>就诊时间</th>
+                <th>预约</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="doctor in doctors">
+                <td v-text="doctor.id"></td>
+                <td v-text="doctor.name"></td>
+                <td v-text="doctor.sex"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
