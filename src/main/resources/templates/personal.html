@@ -16,8 +16,21 @@
     <div style="width:82%;float: right">
         <div class="panel panel-default">
             <div class="panel-body" th:switch="${name}">
-                <div th:case="'hosptial'" th:replace="panel/hospital"></div>
-                <div th:case="'info'" th:replace="panel/info"></div>
+                <div  th:case="'hosptial'">
+                    <div th:replace="panel/hospital"></div>
+                </div>
+                <div th:case="'info'">
+                    <div th:replace="panel/info"></div>
+                </div>
+                <div th:case="'data'">
+                    <div th:replace="panel/data"></div>
+                </div>
+                <div th:case="'comment'">
+                    <div th:replace="panel/comment"></div>
+                </div>
+                <div th:case="'work'">
+                    <div th:replace="panel/work"></div>
+                </div>
             </div>
         </div>
     </div>
