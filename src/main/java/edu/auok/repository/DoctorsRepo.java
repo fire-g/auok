@@ -16,5 +16,5 @@ public interface DoctorsRepo extends JpaRepository<Doctor,Integer>{
 	Collection<Doctor> findByKeyword(@Param("inputName") String kw);
 	
 	@Query(value = "update doctor set maxpatient like ?1 where id like ?2", nativeQuery = true)
-	public void setMaxpatient(int id,int maxpatient);
+	void setMaxpatient(int id,int maxpatient);
 }
