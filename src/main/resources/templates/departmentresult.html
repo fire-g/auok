@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors List</title>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .mt-50 {
+            margin-top: 200px;
+        }
+
+        .mt-10 {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">预约挂号系统</a>
+        <form class="form-inline">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    lw
+                </button>
+                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Action</button>
+                    <button class="dropdown-item" type="button">Another action</button>
+                    <button class="dropdown-item" type="button">Something else here</button>
+                </div>
+            </div>
+        </form>
+    </nav>
+    <div id="app" class="container">
+        <h1 align=center>科室信息</h1>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="department in departments">
+                    <td v-text="department.id"></td>
+                    <td v-text="department.name"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.0.0-alpha/Chart.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                departments: []
+            },
+            mounted: function () {
+                this.getDepartments();
+            },
+            methods: {
+                getDepartments: function () {
+                    axios.get("https://localhost:8080/api/v1/departments", {
+                        params: {
+                        }
+                    })
+                        .then(res => {
+                            this.departments = res.data;
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
