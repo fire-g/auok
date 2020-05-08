@@ -8,7 +8,7 @@ public class DoctorsController {
 	
 	@RequestMapping("/listDoctors")
 	public String listDoctors() {
-		return "listDoctors";
+		return "doctors";
 	}
 	
 }

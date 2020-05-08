@@ -9,7 +9,19 @@
 <script th:src="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <body>
 <div th:replace="common/nav"></div>
-
+<div style="width: 98%;margin: auto">
+    <div style="width: 16%;float: left">
+        <div th:replace="common/left-bar"></div>
+    </div>
+    <div style="width:82%;float: right">
+        <div class="panel panel-default">
+            <div class="panel-body" th:switch="${name}">
+                <div th:case="'hosptial'" th:replace="panel/hospital"></div>
+                <div th:case="'info'" th:replace="panel/info"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script th:src="@{https://cdn.bootcss.com/vue/2.6.11/vue.min.js}"></script>
 <script th:src="@{https://cdn.bootcss.com/axios/0.19.2/axios.min.js}"></script>

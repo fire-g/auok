@@ -1,6 +1,7 @@
 package edu.auok.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,8 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HospitalController {
 
-    @GetMapping("/hospital")
+    @GetMapping("/personal")
     public ModelAndView view(){
-        return new ModelAndView("/hospital");
+        ModelAndView view=new ModelAndView("/personal");
+        view.addObject("name","info");
+        return view;
+    }
+
+    @GetMapping("/personal/{name}")
+    public ModelAndView op(@PathVariable String name){
+        ModelAndView view=new ModelAndView("/personal");
+        view.addObject("name",name);
+        return view;
     }
 }
