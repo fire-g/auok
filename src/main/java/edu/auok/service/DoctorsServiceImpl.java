@@ -26,9 +26,9 @@ public class DoctorsServiceImpl implements DoctorsService{
 		return (Collection<Doctor>)doctorsRepo.findByKeyword("%"+name+"%");
 	}
 	
-	@Override
-	public void setMaxpatient(int id, int maxpatient) {
-		return doctorsRep.setMaxpatient(id,maxpatient);
-	}
+//	@Override
+//	public void setMaxpatient(int id, int maxpatient) {
+//		return doctorsRep.setMaxpatient(id,maxpatient);
+//	}
 
 }

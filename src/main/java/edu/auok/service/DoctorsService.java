@@ -9,5 +9,5 @@ public interface DoctorsService {
 	public Collection<Doctor> getAllDoctors();
 	public Collection<Doctor> findByName(String name);
 	
-	public void setMaxpatient(int id,int maxpatient);
+//	public void setMaxpatient(int id,int maxpatient);
 }

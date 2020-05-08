@@ -37,9 +37,9 @@ public class DoctorsRestController {
 		return new ResponseEntity<Collection<Doctor>>(doctors,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/maxpatient",method = RequestMethod.POST,produces="application/json")
-	public ResponseEntity<doctor> setMaxpatient(@RequestBody int id,int maxpatient){
-		clinicService.setMaxpatient(id, maxpatient);
-		return new ResponseEntity<doctor>(HttpStatus.CREATED);
-	}
+//	@RequestMapping(value="/maxpatient",method = RequestMethod.POST,produces="application/json")
+//	public ResponseEntity<doctor> setMaxpatient(@RequestBody int id,int maxpatient){
+//		clinicService.setMaxpatient(id, maxpatient);
+//		return new ResponseEntity<doctor>(HttpStatus.CREATED);
+//	}
 }
