@@ -26,6 +26,6 @@ public class DepartmentRestController {
 	
 	@GetMapping("/departments")
 	public List<Department> getDepartment() {
-		return service.getAllDepartment();
+		return service.findAllDepartment();
 	}
 }

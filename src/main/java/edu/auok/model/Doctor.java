@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.io.Serializable;
@@ -34,4 +36,10 @@ public class Doctor implements Serializable {
 	private String sex;
 	
 	private String introduction;
+	
+	@OneToOne()
+	@JoinColumn(name="department_id", referencedColumnName="id")
+	private Department department;
+	
+	private int maxPatient;
 }

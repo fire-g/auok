@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import edu.auok.model.Doctor;
 
-public interface DoctorsService {
+public interface DoctorService {
 	
-	public Collection<Doctor> getAllDoctors();
+	public Collection<Doctor> findAllDoctors();
 	public Collection<Doctor> findByName(String name);
 	
 	public void setMaxpatient(int id,int maxpatient);

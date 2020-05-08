@@ -2,61 +2,99 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Doctors List</title>
+<meta charset="UTF-8">
+<title>Doctors List</title>
 
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .mt-50{margin-top:200px;}
-        .mt-10{margin-top:100px;}
-    </style>
+<link
+	href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+.mt-50 {
+	margin-top: 150px;
+}
+
+.mt-10 {
+	margin-top: 100px;
+}
+</style>
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand">预约挂号系统</a>
-        <form class="form-inline">
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    lw
-                </button>
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Action</button>
-                    <button class="dropdown-item" type="button">Another action</button>
-                    <button class="dropdown-item" type="button">Something else here</button>
-                </div>
-            </div>
-        </form>
-    </nav>
-    <div class="container-fluid">
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<a class="navbar-brand">预约挂号系统</a>
+		<form class="form-inline">
+			<div class="dropdown">
+				<button class="btn btn-light dropdown-toggle" type="button"
+					id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">lw</button>
+				<div class="dropdown-menu  dropdown-menu-right"
+					aria-labelledby="dropdownMenu2">
+					<button class="dropdown-item" type="button">Action</button>
+					<button class="dropdown-item" type="button">Another action</button>
+					<button class="dropdown-item" type="button">Something else
+						here</button>
+				</div>
+			</div>
+		</form>
+	</nav>
+	<div class="container-fluid">
 
-        <h1 class="mt-10" align=center>预约信息查询</h1>
+		<h1 class="mt-10" align=center>预约信息查询</h1>
 
-        <div class="row justify-content-md-center mt-50">
-            <div class="col-6">
-            <input name="select" type="radio">按科室查询&emsp;&emsp;
-            <input name="select" type="radio">按医生查询
-            </div>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-6">
-                <div class="input-group mb-3 input-group-lg">
-                    <input type="text" class="form-control" placeholder="按科室查询"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.0.0-alpha/Chart.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script>
-
-    </script>
+		<div class="row justify-content-md-center mt-50">
+			<div class="col-6">
+				<input id="depart" name="select" type="radio" checked
+					onchange="change()">按科室查询&emsp;&emsp; <input id="doct"
+					name="select" type="radio" onchange="change()">按医生查询
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
+			<div class="col-6">
+				<div class="input-group mb-3 input-group-lg">
+					<input id="search-content" type="text" class="form-control"
+						placeholder="按科室查询" aria-label="Recipient's username"
+						aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary"
+							type="button" onClick="search()">Search</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.0.0-alpha/Chart.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
+	<script
+		src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script>
+		function change() {
+			switch ($("input[name=select]:checked").attr("id")) {
+			case "doct":
+				$("#search-content").attr("placeholder", "按医生姓名查询");
+				break;
+			case "depart":
+				$("#search-content").attr("placeholder", "按科室查询");
+				
+				break;
+			default:
+				break;
+			}
+		}
+		
+		function search() {
+			switch ($("input[name=select]:checked").attr("id")) {
+			case "doct":
+				window.location.href = "https://localhost:8080/appointmentinfo/doctor?content=" + $("#search-content").val();
+				break;
+			case "depart":
+				window.location.href = "https://localhost:8080/appointmentinfo/department?content=" + $("#search-content").val();
+				break;
+			default:
+				break;
+			}
+		}
+	</script>
 </body>
 
 </html>

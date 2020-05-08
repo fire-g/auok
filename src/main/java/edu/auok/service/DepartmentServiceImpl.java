@@ -21,8 +21,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 	DepartmentRepo repo;
 	
 	@Override
-	public List<Department> getAllDepartment() {
+	public List<Department> findAllDepartment() {
 		return repo.findAll();
+	}
+	
+	@Override
+	public List<Department> findByName(String name) {
+		if (name == null) {
+			return repo.findAll();
+		} else {
+			return repo.findByKeyword("%" + name + "%");
+		}
+
 	}
 
 }

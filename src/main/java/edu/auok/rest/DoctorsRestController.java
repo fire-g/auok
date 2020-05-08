@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.auok.model.Doctor;
-import edu.auok.service.DoctorsService;
+import edu.auok.service.DoctorService;
 
 @CrossOrigin
 @RestController
@@ -25,15 +25,15 @@ import edu.auok.service.DoctorsService;
 public class DoctorsRestController {
 	
 	@Autowired
-	private DoctorsService doctorsService;
+	private DoctorService doctorService;
 	
 	@RequestMapping(value="",method = RequestMethod.GET,produces="application/json")
 	public ResponseEntity<Collection<Doctor>> doctors(String name){
 		Collection<Doctor> doctors;
 		if(name == null)
-			doctors = doctorsService.getAllDoctors();
+			doctors = doctorService.findAllDoctors();
 		else
-			doctors = doctorsService.findByName(name);
+			doctors = doctorService.findByName(name);
 		return new ResponseEntity<Collection<Doctor>>(doctors,HttpStatus.OK);
 	}
 	

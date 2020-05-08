@@ -37,7 +37,7 @@
     <div id="app" class="container">
         <h1 align=center>科室信息</h1>
         <hr>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>编号</th>
@@ -45,10 +45,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="department in departments">
-                    <td v-text="department.id"></td>
-                    <td v-text="department.name"></td>
-                </tr>
+                <tr th:each="department : ${departments}">
+					<td th:text="${department.id}"></td>
+					<td th:text="${department.name}"></td>
+				</tr>
             </tbody>
         </table>
     </div>
@@ -58,29 +58,7 @@
     <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
     <script>
-        var vue = new Vue({
-            el: "#app",
-            data: {
-                departments: []
-            },
-            mounted: function () {
-                this.getDepartments();
-            },
-            methods: {
-                getDepartments: function () {
-                    axios.get("https://localhost:8080/api/v1/departments", {
-                        params: {
-                        }
-                    })
-                        .then(res => {
-                            this.departments = res.data;
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        })
-                }
-            }
-        });
+       
     </script>
 </body>
 
