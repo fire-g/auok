@@ -18,12 +18,12 @@ public class DoctorsServiceImpl implements DoctorsService{
 	
 	@Override
 	public Collection<Doctor> getAllDoctors() {
-		return doctorsRepo.findAll();
+		return (Collection<Doctor>)doctorsRepo.findAll();
 	}
 	
 	@Override
 	public Collection<Doctor> findByName(String name) {
-		return doctorsRepo.findByKeyword("%"+name+"%");
+		return (Collection<Doctor>)doctorsRepo.findByKeyword("%"+name+"%");
 	}
 	
 	@Override
