@@ -30,16 +30,17 @@ public class DoctorsRestController {
 	@RequestMapping(value="",method = RequestMethod.GET,produces="application/json")
 	public ResponseEntity<Collection<Doctor>> doctors(String name){
 		Collection<Doctor> doctors;
-		if(name == null)
+		if(name == null) {
 			doctors = doctorsService.getAllDoctors();
-		else
+		} else {
 			doctors = doctorsService.findByName(name);
+		}
 		return new ResponseEntity<Collection<Doctor>>(doctors,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/maxpatient",method = RequestMethod.POST,produces="application/json")
-	public ResponseEntity<doctor> setMaxpatient(@RequestBody int id,int maxpatient){
-		clinicService.setMaxpatient(id, maxpatient);
-		return new ResponseEntity<doctor>(HttpStatus.CREATED);
+	public ResponseEntity<Doctor> setMaxpatient(@RequestBody int id,int maxpatient){
+//		clinicService.setMaxpatient(id, maxpatient);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 }

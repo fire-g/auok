@@ -18,17 +18,17 @@ public class DoctorsServiceImpl implements DoctorsService{
 	
 	@Override
 	public Collection<Doctor> getAllDoctors() {
-		return (Collection<Doctor>)doctorsRepo.findAll();
+		return doctorsRepo.findAll();
 	}
 	
 	@Override
 	public Collection<Doctor> findByName(String name) {
-		return (Collection<Doctor>)doctorsRepo.findByKeyword("%"+name+"%");
+		return doctorsRepo.findByKeyword("%"+name+"%");
 	}
 	
 	@Override
 	public void setMaxpatient(int id, int maxpatient) {
-		return doctorsRep.setMaxpatient(id,maxpatient);
+		doctorsRepo.setMaxpatient(id,maxpatient);
 	}
 
 }
