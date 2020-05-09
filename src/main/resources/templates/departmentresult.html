@@ -45,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="department : ${departments}">
+                <tr th:each="department : ${departments}" onClick="turnTo(this)">
 					<td th:text="${department.id}"></td>
 					<td th:text="${department.name}"></td>
 				</tr>
@@ -58,7 +58,9 @@
     <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
     <script>
-       
+    	function turnTo(obj) {
+			window.location.href = "https://localhost:8080/appointmentinfo/result?doctorid=-1&departmentid=" + $(obj).children("td:eq(0)").html();
+		}
     </script>
 </body>
 

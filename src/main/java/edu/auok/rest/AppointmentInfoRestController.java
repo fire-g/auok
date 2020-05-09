@@ -1,5 +1,7 @@
 package edu.auok.rest;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +16,19 @@ import edu.auok.model.User;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/appointment")
+@RequestMapping("/api/v1/appointments")
 public class AppointmentInfoRestController {
 	
 	@Autowired
 	private AppointmentInfoService service;
 	
 	@GetMapping("")
-	public int home() {
-		return service.getAppointmentInfo(new Department());
+	public Map<String, Object> getData(Integer departmentId, Integer doctorId, Integer code) {
+		return service.getAppointmentInfo(departmentId, doctorId, code);
 	}
+	
+//	@GetMapping("/doctor")
+//	public Map<String, Object> getByDoctorId(Integer doctorId, Integer code) {
+//		return service.getAppointmentInfoByDepartmentId(doctorId, code);
+//	}
 }

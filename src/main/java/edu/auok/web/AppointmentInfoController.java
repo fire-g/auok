@@ -43,4 +43,14 @@ public class AppointmentInfoController {
 		
 		return "departmentresult";
 	}
+	
+	@GetMapping("/result")
+	public String getResult(Model model, @RequestParam("departmentid") Integer departmentId, 
+			@RequestParam("doctorid") Integer doctorId) {
+		
+		model.addAttribute("doctorid", doctorId);
+		model.addAttribute("departmentid", departmentId);
+		
+		return "appointmentinfo";
+	}
 }

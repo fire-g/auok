@@ -1,93 +1,103 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>Doctors List</title>
 
-<link rel="stylesheet"
-	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link
+	href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.bootcdn.net/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+	rel="stylesheet">
 </head>
+
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">医院预约挂号系统</a>
-		</div>
-		<div style="float: right">
-			<ul class="nav navbar-nav">
-				<li><a href="#">姓名：楼畅</a></li>
-				<li><a href="#">编号：17201215</a></li>
-			</ul>
-		</div>
-	</nav>
-
-	<div class="container-fluid">
-		<nav class="navbar navbar-default" role="navigation">
-			<div style="float: left">
-				<form class="bs-example bs-example-form" role="form"
-					action="/listDoctors" method="post">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="input-group">
-								<div class="input-group-btn">
-									<button type="button" class="btn btn-default dropdown-toggle"
-										data-toggle="dropdown" style="justify-content: center">
-										按科室选择搜索 <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a href="#">内科</a></li>
-										<li><a href="#">外科</a></li>
-										<li><a href="#">口腔科</a></li>
-										<li><a href="#">骨科</a></li>
-									</ul>
-								</div>
-
-								<div class="input-group" style="padding-left: 100px">
-									<input type="text" class="form-control"
-										placeholder="请输入您想搜索的医生姓名" name="kw" v-model="name"> <span
-										class="input-group-btn">
-										<button class="btn btn-default" v-on:click="findDoctors">开始搜索</button>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+	<nav class="navbar navbar-light bg-light justify-content-between">
+		<a class="navbar-brand">预约挂号系统</a>
+		<form class="form-inline">
+			<div class="dropdown">
+				<button class="btn btn-light dropdown-toggle" type="button"
+					id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">lw</button>
+				<div class="dropdown-menu  dropdown-menu-right"
+					aria-labelledby="dropdownMenu2">
+					<button class="dropdown-item" type="button">Action</button>
+					<button class="dropdown-item" type="button">Another action</button>
+					<button class="dropdown-item" type="button">Something else
+						here</button>
+				</div>
 			</div>
-		</nav>
-	
-		<nav class="navbar navbar-default" role="navigation">
-			<canvas id="myChart" height="160" width="400"></canvas>
-		</nav>
+		</form>
+	</nav>
+	<br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-1 offset-11">
+				<select id="sel">
+					<option value="1">一星期内</option>
+					<option value="2">一个月内</option>
+					<option value="3">三个月内</option>
+					<option value="4">六个月内</option>
+				</select>
+			</div>
+		</div>
+		<canvas id="myChart" height="160" width="400"></canvas>
 	</div>
+
+	<script
+		src="https://cdn.bootcdn.net/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
 	<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 	<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-
+		src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script>
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
-			type : 'line',
-
-			// The data for our dataset
-			data : {
-				labels : [ 'January', 'February', 'March', 'April', 'May',
-						'June', 'July' ],
-				datasets : [ {
-					label : 'My First dataset',
-					backgroundColor : 'rgb(255, 99, 132)',
-					borderColor : 'rgb(255, 99, 132)',
-					data : [ 0, 10, 5, 2, 20, 30, 45 ]
-				} ]
-			},
-
-			// Configuration options go here
-			options : {}
+	
+	
+	$(document).ready(function(){
+		
+		$("#sel").change(function(){
+			getData($("#sel").val());
 		});
+		getData(1);
+		
+	});
+	
+	function getData(id) {
+		$.ajax({
+	    	type: "GET",
+	        url: "https://localhost:8080/api/v1/appointments",
+	            data: {
+	            	doctorId:[[${doctorid}]],
+	            	departmentId:[[${departmentid}]],
+	            	code:id,
+	                graphData:null,
+	            },
+	            dataType: "json",
+	            success: function(data) {
+	            	//alert(data);
+	            	var ctx = document.getElementById('myChart').getContext('2d');
+	        		var chart = new Chart(ctx, {
+	        			type : 'line',
+	        			
+	        			data : {
+	        				labels : data.labels,
+	        				datasets : [ {
+	        					lineTension : 0,
+	        					label : data.label,
+	        					//backgroundColor : 'rgb(255, 99, 132)',
+	        					borderColor : 'rgb(255, 99, 132)',
+	        					data : data.data
+	        				} ]
+	        			},
+	        			options : {}
+	        		});
+	            }
+	        });
+	}
 	</script>
 </body>
+
 </html>
