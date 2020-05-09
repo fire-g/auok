@@ -9,7 +9,7 @@
 <script th:src="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <body>
 <div th:replace="common/nav"></div>
-<div style="width: 98%;margin: auto">
+<div id="app" style="width: 98%;margin: auto">
     <div style="width: 66%;float: left">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -63,6 +63,7 @@
                         <td v-text="doctor.id"></td>
                         <td v-text="doctor.name"></td>
                         <td v-text="doctor.sex"></td>
+                        <td><button class="btn btn-default">预约</button></td>
                     </tr>
                     </tbody>
                 </table>
@@ -87,4 +88,32 @@
 </body>
 <script th:src="@{https://cdn.bootcss.com/vue/2.6.11/vue.min.js}"></script>
 <script th:src="@{https://cdn.bootcss.com/axios/0.19.2/axios.min.js}"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            name: "",
+            doctors: []
+        },
+        mounted:function(){
+            this.findDoctors();
+        },
+        methods: {
+            findDoctors: function () {
+                axios.get("https://localhost:8080/api/v1/listDoctors", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        //console.log(res.data)
+                        this.doctors = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    });
+</script>
 </html>
