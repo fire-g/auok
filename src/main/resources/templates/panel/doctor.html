@@ -1,0 +1,55 @@
+<div id="app">
+    <button class="btn btn-default">新增科室</button>
+    <button class="btn btn-default">删除科室</button>
+    <table class="table table-bordered">
+        <caption>科室列表</caption>
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="0"></th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>简介</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="doctor in doctors">
+            <td><input type="checkbox" id="{{doctor.id}}"/></td>
+            <td>{{doctor.id}}</td>
+            <td>{{doctor.name}}</td>
+            <td>{{doctor.sex}}</td>
+            <td>{{doctor.introduction}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            name: "",
+            doctors: []
+        },
+        mounted: function () {
+            this.findDoctors();
+        },
+        methods: {
+            findDoctors: function () {
+                axios.get("/api/v1/listDoctors", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        this.doctors = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    });
+</script>
