@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author HaoTian
  */
 @RestController
-public class HospitalController {
+public class PersonalController {
 
     @GetMapping("/personal")
     public ModelAndView view(){
