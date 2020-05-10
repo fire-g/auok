@@ -4,7 +4,11 @@ import java.util.List;
 
 import edu.auok.model.Department;
 
+/**
+ * @author HaoTian
+ */
 public interface DepartmentService {
-	public List<Department> findAllDepartment();
-	public List<Department> findByName(String name);
+	List<Department> findAllDepartment();
+	List<Department> findByName(String name);
+	void save(Department department);
 }

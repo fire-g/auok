@@ -1,4 +1,4 @@
-package edu.auok.service;
+package edu.auok.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import edu.auok.service.AppointmentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;

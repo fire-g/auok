@@ -1,27 +1,37 @@
-<table class="table table-bordered">
-    <caption>图片</caption>
-    <thead>
-    <tr>
-        <th>名称</th>
-        <th>城市</th>
-        <th>邮编</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Tanmay</td>
-        <td>Bangalore</td>
-        <td>560001</td>
-    </tr>
-    <tr>
-        <td>Sachin</td>
-        <td>Mumbai</td>
-        <td>400003</td>
-    </tr>
-    <tr>
-        <td>Uma</td>
-        <td>Pune</td>
-        <td>411027</td>
-    </tr>
-    </tbody>
-</table>
+<div id="app">
+    <ul class="list-group">
+        <li class="list-group-item">账户:{{user.account}}</li>
+        <li class="list-group-item">用户名:{{user.name}}</li>
+        <li class="list-group-item">性别:{{user.sex}}</li>
+    </ul>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+    var vue=new Vue({
+        el: "#app",
+        data: {
+            name: "",
+            user:null
+        },
+        mounted: function () {
+            this.findDoctors();
+        },
+        methods: {
+            findDoctors: function () {
+                axios.get("/api/v1/info", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        this.user = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    });
+</script>

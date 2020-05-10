@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>登录你的账户</title>
+    <link rel="stylesheet" th:href="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css}">
+    <script th:src="@{https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<style>
+    form {
+        width: 200px;
+        margin: auto;
+    }
+</style>
+<body onload="document.f.username.focus();">
+<div th:replace="/common/nav"></div>
+<form name="f" action="/login" method="POST">
+    <h3>登录</h3>
+    <div>
+        <div>手机号:</div>
+        <div>
+            <label>
+                <input type="text" name="username" value="">
+            </label>
+        </div>
 
+        <div>密码:</div>
+
+        <div>
+            <label>
+                <input type="password" name="password">
+            </label>
+        </div>
+
+<!--        <div>-->
+<!--            <label>-->
+<!--                <input type="checkbox" name="remember-me">-->
+<!--            </label>-->
+<!--            <span>保持登录</span>-->
+<!--        </div>-->
+        <div><input name="submit" type="submit" value="登录"></div>
+    </div>
+</form>
+<!--<form method="post" th:action="@{/sms-login}">-->
+<!--    <div>-->
+<!--        手机号：<input type="text" id="mobile" name="mobile" placeholder="请输入您的邮箱">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        验证码：<input type="text" name="smsCode">-->
+<!--        <button class="btn btn-default" type="button" onclick="sendSms()">获取验证码</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button class="btn btn-default" type="submit">立即登陆</button>-->
+<!--    </div>-->
+<!--</form>-->
 </body>
+<!--引入百度cdn-->
+<!--<script th:src="@{http://libs.baidu.com/jquery/2.0.0/jquery.min.js}"></script>-->
+<script>
+    function sendSms() {
+        $.ajax({
+            url:'/sms-code?mobile=' + document.getElementById("mobile").value,
+            success:function (result) {
+                alert(result)
+            }
+        });
+        // window.location.href = '/sms-code?mobile=' + document.getElementById("mobile").value;
+    }
+    function login() {
+    }
+</script>
 </html>

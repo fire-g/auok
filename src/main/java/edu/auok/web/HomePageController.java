@@ -13,7 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomePageController {
 
     @GetMapping("/")
-    public ModelAndView login(){
+    public ModelAndView index(){
         return new ModelAndView("/index");
     }
+//
+//    @GetMapping("/login")
+//    public ModelAndView login(){
+//        return new ModelAndView("/login");
+//    }
 }

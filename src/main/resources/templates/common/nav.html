@@ -1,11 +1,17 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">医院预约挂号系统</a>
         </div>
-        <div style="float: right">
+        <div sec:authorize="isAuthenticated()" style="float: right">
             <ul class="nav navbar-nav">
-                <li><a href="/personal">姓名:楼畅</a></li>
+                <li><a href="/personal"><span sec:authentication="name"></span></a></li>
+                <li><a href="/logout"><span>注销登录</span></a></li>
+            </ul>
+        </div>
+        <div sec:authorize="!isAuthenticated()" style="float: right">
+            <ul class="nav navbar-nav">
+                <li><a href="/login"><span>登录</span></a></li>
             </ul>
         </div>
     </div>

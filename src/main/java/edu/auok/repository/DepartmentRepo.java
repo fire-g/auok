@@ -13,4 +13,8 @@ public interface DepartmentRepo extends JpaRepository<Department, Integer> {
 	@Query(value="select * from departments where name like :name", nativeQuery=true)
 	List<Department> findByKeyword(@Param("name") String kw); 
 
+	Department findByName(String name);
+
+	@Query(value="SELECT MAX(id) from departments",nativeQuery=true)
+	int findMaxId();
 }

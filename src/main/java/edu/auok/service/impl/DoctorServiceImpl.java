@@ -1,8 +1,9 @@
-package edu.auok.service;
+package edu.auok.service.impl;
 
 import java.util.Collection;
 import java.util.List;
 
+import edu.auok.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,7 @@ import edu.auok.model.Doctor;
 import edu.auok.repository.DoctorRepo;
 
 @Service
-public class DoctorServiceImpl implements DoctorService{
+public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
 	private DoctorRepo doctorRepo;

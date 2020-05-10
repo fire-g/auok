@@ -1,45 +1,45 @@
-<ul class="list-group">
-    <li class="list-group-item">
+<ul class="list-group" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <li sec:authorize="hasAnyRole('ADMIN','DOCTOR','USER')" class="list-group-item">
         <a href="/personal/info">
             <div>个人中心</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li sec:authorize="hasAnyRole('ADMIN','DOCTOR','USER')" class="list-group-item">
         <a href="/personal/appointment">
             <div>我的预约</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li sec:authorize="hasRole('ADMIN')" class="list-group-item">
         <a href="/personal/hospital">
             <div>科室管理</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li  sec:authorize="hasRole('ADMIN')" class="list-group-item">
         <a href="/personal/doctor">
             <div>医生管理</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li sec:authorize="hasAnyRole('ADMIN','DOCTOR')" class="list-group-item">
         <a href="/personal/patient">
             <div>我的患者</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li  sec:authorize="hasRole('ADMIN')" class="list-group-item">
         <a href="/personal/hospital">
             <div>权限管理</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li  sec:authorize="hasAnyRole('ADMIN','DOCTOR')" class="list-group-item">
         <a href="/personal/work">
             <div>上班管理</div>
         </a>
     </li>
-    <li class="list-group-item">
-        <a href="/appointment">
+    <li sec:authorize="hasAnyRole('ADMIN','DOCTOR')" class="list-group-item">
+        <a href="/personal/appointment">
             <div>数据分析</div>
         </a>
     </li>
-    <li class="list-group-item">
+    <li sec:authorize="hasAnyRole('ADMIN','DOCTOR','USER')" class="list-group-item">
         <a href="/personal/comment">
             <div>留言管理</div>
         </a>

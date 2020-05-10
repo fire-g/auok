@@ -1,6 +1,128 @@
 <div id="app">
-    <button class="btn btn-default">新增科室</button>
-    <button class="btn btn-default">删除科室</button>
+    <!--新增-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>医生姓名</label>
+                        <label>
+                            <select class="form-control">
+                                <option v-for="user in users">{{user.name}}</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>医生性别</label>
+                        <label>
+                            <select class="form-control" name="txt_sex">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>所属科室</label>
+                        <label>
+                            <select class="form-control" >
+                                <option v-for="department in departments">{{department.name}}</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_description">医生简介</label>
+                        <input type="text" name="txt_departmentlevel" class="form-control" id="txt_description" placeholder="科室简介">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="submit()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+                <script>
+                    function submit() {
+                        const form={
+                            "id":0,
+                            "name":$("#txt_name").val(),
+                            "introduction":$("#txt_introduction").val()
+                        }
+                        $.ajax({
+                            method:'POST',
+                            url:'/api/v1/departments',
+                            data:JSON.stringify(form),
+                            contentType:'application/json',
+                            success:function () {
+                                vue.findDoctors()
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <!--修改信息-->
+    <div class="modal fade" id="modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModify">新增</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>医生姓名</label>
+                        <label for="doctor_name">
+                            <input type="text" name="txt_departmentlevel" disabled class="form-control" id="doctor_name" placeholder="科室简介">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctor_sex">医生性别</label>
+                        <input type="text" name="txt_departmentlevel" disabled class="form-control" id="doctor_sex" placeholder="科室简介">
+                    </div>
+                    <div class="form-group">
+                        <label>所属科室</label>
+                        <label>
+                            <select class="form-control" >
+                                <option v-for="department in departments">{{department.name}}</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_description">医生简介</label>
+                        <input type="text" name="txt_departmentlevel" class="form-control" id="txt_introduction" placeholder="科室简介">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_su" class="btn btn-primary" data-dismiss="modal" onclick="submit()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+                <script>
+                    function submit() {
+                        const form={
+                            "id":0,
+                            "name":$("#txt_name").val(),
+                            "introduction":$("#txt_introduction").val()
+                        }
+                        $.ajax({
+                            method:'POST',
+                            url:'/api/v1/departments',
+                            data:JSON.stringify(form),
+                            contentType:'application/json',
+                            success:function () {
+                                vue.findDoctors()
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <!--主要内容-->
+    <button class="btn btn-default" id="btn_add">新增医生</button>
+    <button class="btn btn-default">删除医生</button>
     <table class="table table-bordered">
         <caption>科室列表</caption>
         <thead>
@@ -9,16 +131,20 @@
             <th>ID</th>
             <th>姓名</th>
             <th>性别</th>
+            <th>所属科室</th>
             <th>简介</th>
+            <th>单日最大接诊量</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="doctor in doctors">
+        <tr v-for="(doctor,i) in doctors">
             <td><input type="checkbox" id="{{doctor.id}}"/></td>
             <td>{{doctor.id}}</td>
-            <td>{{doctor.name}}</td>
-            <td>{{doctor.sex}}</td>
-            <td>{{doctor.introduction}}</td>
+            <td class="doctor_name" onclick="modify(this)">{{doctor.name}}</td>
+            <td class="doctor_sex" onclick="modify(this)">{{doctor.sex}}</td>
+            <td class="doctor_department" onclick="modify(this)">{{doctor.department.name}}</td>
+            <td class="doctor_introduction" onclick="modify(this.index)" label={{i}}>{{doctor.introduction}}</td>
+            <td>{{doctor.maxPatient}}</td>
         </tr>
         </tbody>
     </table>
@@ -26,14 +152,18 @@
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
 <script>
-    new Vue({
+    var vue=new Vue({
         el: "#app",
         data: {
             name: "",
-            doctors: []
+            doctors: [],
+            departments:[],
+            users:[]
         },
         mounted: function () {
             this.findDoctors();
+            this.findDepartment();
+            this.findUser();
         },
         methods: {
             findDoctors: function () {
@@ -49,7 +179,53 @@
                     .catch(err => {
                         console.error(err);
                     })
+            },
+            findDepartment: function () {
+                axios.get("/api/v1/departments", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        this.departments = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            },
+            findUser: function () {
+                axios.get("/api/v1/users", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        this.users = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
             }
         }
     });
+    //注册新增按钮的事件
+    $("#btn_add").click(function () {
+        $("#txt_name").val('')
+        $("#txt_introduction").val('')
+        $("#myModalLabel").text("新增");
+        $('#myModal').modal();
+    });
+    function modify (e) {
+        console.log(e)
+        $("#doctor_name").val(vue.doctors[e].name)
+        $("#doctor_introduction").val(vue.doctors[e].name)
+        $("#myModify").text("修改");
+        $('#modify').modal();
+    }
+    function batch() {
+        var list=$(".batch")
+        console.log(list)
+    }
 </script>

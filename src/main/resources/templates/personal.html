@@ -16,7 +16,7 @@
     <div style="width:82%;float: right">
         <div class="panel panel-default">
             <div class="panel-body" th:switch="${name}">
-                <div  th:case="'hosptial'">
+                <div  th:case="'hospital'">
                     <div th:replace="panel/hospital"></div>
                 </div>
                 <div th:case="'info'">
@@ -24,6 +24,12 @@
                 </div>
                 <div th:case="'data'">
                     <div th:replace="panel/data"></div>
+                </div>
+                <div th:case="'doctor'">
+                    <div th:replace="panel/doctor"></div>
+                </div>
+                <div th:case="'patient'">
+                    <div th:replace="panel/patient"></div>
                 </div>
                 <div th:case="'comment'">
                     <div th:replace="panel/comment"></div>
@@ -39,6 +45,4 @@
     </div>
 </div>
 </body>
-<script th:src="@{https://cdn.bootcss.com/vue/2.6.11/vue.min.js}"></script>
-<script th:src="@{https://cdn.bootcss.com/axios/0.19.2/axios.min.js}"></script>
 </html>

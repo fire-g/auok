@@ -3,9 +3,7 @@ package edu.auok.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.auok.model.Department;
 import edu.auok.repository.DepartmentRepo;
@@ -16,7 +14,6 @@ import edu.auok.service.DepartmentService;
  * @author LW
  *
  */
-
 @RestController
 @RequestMapping("/api/v1")
 public class DepartmentRestController {
@@ -27,5 +24,11 @@ public class DepartmentRestController {
 	@GetMapping("/departments")
 	public List<Department> getDepartment() {
 		return service.findAllDepartment();
+	}
+
+	@PostMapping("/departments")
+	public void postDepartment(@RequestBody Department department){
+		System.out.println(department);
+		service.save(department);
 	}
 }

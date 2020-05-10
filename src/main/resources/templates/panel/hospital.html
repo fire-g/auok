@@ -1,27 +1,116 @@
-<table class="table table-bordered">
-    <caption>边框表格布局</caption>
-    <thead>
-    <tr>
-        <th>名称</th>
-        <th>城市</th>
-        <th>邮编</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Tanmay</td>
-        <td>Bangalore</td>
-        <td>560001</td>
-    </tr>
-    <tr>
-        <td>Sachin</td>
-        <td>Mumbai</td>
-        <td>400003</td>
-    </tr>
-    <tr>
-        <td>Uma</td>
-        <td>Pune</td>
-        <td>411027</td>
-    </tr>
-    </tbody>
-</table>
+<div id="app">
+    <button id="btn_add" class="btn btn-default">新增科室</button>
+    <button class="btn btn-default" onclick="batch()">删除科室</button>
+    <table class="table table-bordered">
+        <caption>科室列表</caption>
+        <thead>
+        <tr>
+            <th><input type="checkbox" class="batch" id="0"></th>
+            <th>ID</th>
+            <th>科室名称</th>
+            <th>简介</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="doctor in doctors">
+            <td><input type="checkbox" id=doctor.id /></td>
+            <td onclick="modify(this)">{{doctor.id}}</td>
+            <td class="doctor_name" onclick="modify(this)">{{doctor.name}}</td>
+            <td class="doctor_introduction" onclick="modify(this)">{{doctor.introduction}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+    var vue=new Vue({
+        el: "#app",
+        data: {
+            name: "",
+            doctors: []
+        },
+        mounted: function () {
+            this.findDoctors();
+        },
+        methods: {
+            findDoctors: function () {
+                axios.get("/api/v1/departments", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                        this.doctors = res.data;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    });
+    //注册新增按钮的事件
+    $("#btn_add").click(function () {
+        $("#txt_name").val('')
+        $("#txt_introduction").val('')
+        $("#myModalLabel").text("新增");
+        $('#myModal').modal();
+    });
+    function modify (e) {
+        $("#txt_name").val(e.parentNode.childNodes[4].innerText)
+        $("#txt_introduction").val(e.parentNode.childNodes[6].innerText)
+        $("#myModalLabel").text("修改");
+        $('#myModal').modal();
+    }
+    function batch() {
+        var list=$(".batch")
+        console.log(list)
+    }
+</script>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txt_name">科室名称</label>
+                    <input type="text" name="txt_departmentname" class="form-control" id="txt_name" placeholder="科室名称">
+                </div>
+                <div class="form-group">
+                    <label for="txt_introduction">科室简介</label>
+                    <input type="text" name="txt_departmentlevel" class="form-control" id="txt_introduction" placeholder="科室简介">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="submit()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+            </div>
+            <script>
+                function submit() {
+                    // var form=new FormData();
+                    // form.append("department",$("#txt_name").val())
+                    // form.append("introduction",$("#txt_introduction").val())
+                    const form={
+                        "id":0,
+                        "name":$("#txt_name").val(),
+                        "introduction":$("#txt_introduction").val()
+                    }
+                    $.ajax({
+                        method:'POST',
+                        url:'/api/v1/departments',
+                        data:JSON.stringify(form),
+                        contentType:'application/json',
+                        // processData:false,
+                        success:function () {
+                            vue.findDoctors()
+                        }
+                    });
+                }
+            </script>
+        </div>
+    </div>
+</div>

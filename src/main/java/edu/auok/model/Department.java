@@ -26,5 +26,7 @@ public class Department  implements Serializable {
 	private int id;
 	
 	private String name;
+
+	private String introduction;
 	
 }
